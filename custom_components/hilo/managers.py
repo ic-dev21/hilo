@@ -34,6 +34,7 @@ class UtilityManager:
             LOG.debug(f"Entity {entity} is already in the utility meters")
             return None
         self.new_entities += 1
+        meter_name = None
         for tarif in tariff_list:
             name = f"{entity}_{self.period}"
             meter_name = f"{name} {tarif}"
@@ -43,10 +44,10 @@ class UtilityManager:
                 "name": meter_name,
                 "tariff": tarif,
             }
-            return meter_name
+        return meter_name
 
     def add_meter_config(self, entity, tariff_list, net_consumption):
-        meter_name = self.add_meter_entity(entity, tariff_list)
+        #meter_name = self.add_meter_entity(entity, tariff_list)
         if meter_name:
             name = f"{entity}_{self.period}"
             LOG.debug(

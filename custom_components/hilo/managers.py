@@ -26,7 +26,6 @@ class UtilityManager:
         self.new_entities = 0
 
     def add_meter(self, entity, tariff_list, net_consumption=False):
-        self.add_meter_entity(entity, tariff_list)
         self.add_meter_config(entity, tariff_list, net_consumption)
 
     def add_meter_entity(self, entity, tariff_list):
@@ -44,10 +43,12 @@ class UtilityManager:
                 "name": meter_name,
                 "tariff": tarif,
             }
+        LOG.debug(f"ic-dev21: meter names in add_meter_entity: {meter_name}")
         return meter_name
 
     def add_meter_config(self, entity, tariff_list, net_consumption):
-        #meter_name = self.add_meter_entity(entity, tariff_list)
+        meter_name = self.add_meter_entity(entity, tariff_list)
+        LOG.debug(f"ic-dev21: meter names : {meter_name}")
         if meter_name:
             name = f"{entity}_{self.period}"
             LOG.debug(
